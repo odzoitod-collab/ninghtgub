@@ -1,50 +1,45 @@
-export interface Review {
-  id: string;
-  author: string;
-  text: string;
-  rating: number;
-  date: string;
+export interface City {
+  id: number;
+  name: string;
+  is_active: boolean;
 }
 
 export interface Profile {
-  id: string;
+  id: number;
+  code: string;
+  worker_id: number;
   name: string;
   age: number;
-  city: string;
-  height: number; // cm
-  weight: number; // kg
-  bust: number;
-  price: number; // Rubles
+  weight: number;
+  height: number;
+  breast_size: string;
+  city_id: number;
+  cities?: {
+    name: string;
+  };
+  price: string; // Base price stored as string or number in DB, using string based on prompt
   description: string;
-  services: string[];
-  images: string[];
-  isTop?: boolean;
-  isVerified?: boolean;
-  reviews: Review[];
+  photo_url: string;
+  photo_urls: string[];
+  is_available: boolean;
+  created_at: string;
 }
 
-export interface FilterState {
-  city: string;
-  minAge: number;
-  maxAge: number;
-  minHeight: number;
-  maxHeight: number;
-  minWeight: number;
-  maxWeight: number;
-  minBust: number;
-  services: string[];
+export interface Order {
+  id?: number;
+  client_tg_id: number;
+  profile_id: number;
+  duration: '1h' | '2h' | 'night';
+  base_price: number;
+  final_price: number;
+  promo_code?: string;
+  promo_discount?: number;
+  status: 'pending' | 'paid' | 'completed' | 'cancelled';
+  created_at?: string;
 }
 
-export type ViewState = 'HOME' | 'FAVORITES' | 'MORE' | 'PROFILE' | 'BOOKING' | 'CONFIRMATION';
-
-export interface BookingData {
-  serviceTypes: string[];
-  duration: string;
-  date: string;
-}
-
-export interface ToastMessage {
+export interface Settings {
   id: number;
-  message: string;
-  type: 'success' | 'error' | 'info';
+  support_username: string;
+  payment_details: string;
 }

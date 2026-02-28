@@ -1,67 +1,60 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Profile } from '../types';
-import { MapPinIcon, HeartIcon, VerifiedIcon } from './Icons';
+import { MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-interface Props {
+interface ProfileCardProps {
   profile: Profile;
-  onClick: (id: string) => void;
-  isFavorite: boolean;
-  onToggleFavorite: (e: React.MouseEvent, id: string) => void;
 }
 
-export const ProfileCard: React.FC<Props> = ({ profile, onClick, isFavorite, onToggleFavorite }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
-    <div 
-      onClick={() => onClick(profile.id)}
-      className="relative group rounded-xl overflow-hidden bg-dark-800 shadow-lg cursor-pointer transform transition-all active:scale-[0.98] duration-300"
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
+      className="group relative block"
     >
-      <div className="aspect-[3/4] w-full relative">
-        <img 
-          src={profile.images[0]} 
-          alt={profile.name} 
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-dark-900/90 via-transparent to-transparent opacity-80" />
-        
-        {/* Top Badges */}
-        <div className="absolute top-0 left-0 w-full p-2 flex justify-between items-start">
-           <div className="flex space-x-1">
-             {profile.isTop && (
-              <div className="bg-violet-500/90 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase tracking-wider">
-                TOP
-              </div>
-             )}
-           </div>
+      <Link to={`/profile/${profile.code}`} className="block">
+        {/* Card Image Wrapper */}
+        <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-neutral-900 shadow-2xl ring-1 ring-white/10 group-hover:ring-brand-accent/50 transition-all duration-500">
+          <img 
+            src={profile.photo_url || `https://picsum.photos/400/600?random=${profile.id}`} 
+            alt={profile.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+          />
           
-          <button 
-            onClick={(e) => onToggleFavorite(e, profile.id)}
-            className="p-2 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors"
-          >
-            <HeartIcon className={`w-5 h-5 ${isFavorite ? 'text-red-500' : 'text-white'}`} fill={isFavorite} />
-          </button>
-        </div>
-
-        <div className="absolute bottom-0 left-0 w-full p-3">
-          <div className="flex justify-between items-end">
-            <div>
-              <div className="flex items-center space-x-1">
-                <h3 className="text-lg font-bold text-white leading-tight">
-                  {profile.name}, <span className="text-violet-400">{profile.age}</span>
-                </h3>
-                {profile.isVerified && <VerifiedIcon className="w-4 h-4" />}
-              </div>
-              <div className="flex items-center text-gray-300 text-xs mt-1">
-                <MapPinIcon className="w-3 h-3 mr-1" />
-                {profile.city}
-              </div>
+          {/* Subtle Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80" />
+          
+          {/* Card Content */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 transform transition-transform duration-300">
+            <div className="flex justify-between items-end mb-1">
+              <h3 className="text-lg font-medium text-white flex items-center gap-2">
+                {profile.name}
+                <span className="text-xs font-normal text-neutral-400 bg-white/10 px-1.5 py-0.5 rounded">
+                  {profile.age}
+                </span>
+              </h3>
             </div>
-            <div className="text-right">
-              <span className="block text-white font-semibold text-base">{profile.price / 1000}к</span>
+            
+            <div className="flex items-center justify-between">
+               <div className="flex items-center gap-1 text-neutral-400 text-xs">
+                  <MapPin size={12} className="text-brand-accent" />
+                  <span>{profile.cities?.name || 'Москва'}</span>
+               </div>
+               <div className="text-brand-accent font-medium text-sm">
+                 {parseInt(profile.price || '0').toLocaleString('ru-RU')} ₽
+               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Link>
+    </motion.div>
   );
 };
+
+export default ProfileCard;

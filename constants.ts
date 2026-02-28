@@ -1,55 +1,17 @@
-export const CITIES = [
-  "Москва", "Санкт-Петербург", "Новосибирск", "Екатеринбург", "Казань", 
-  "Нижний Новгород", "Челябинск", "Самара", "Омск", "Ростов-на-Дону", 
-  "Уфа", "Красноярск", "Воронеж", "Пермь", "Волгоград", "Краснодар", "Сочи"
-];
+// Supabase: ключи в коде, .env не используется
+export const SUPABASE_URL = 'https://rdluqkmslfqabrgykmwl.supabase.co';
+export const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkbHVxa21zbGZxYWJyZ3lrbXdsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMDc2MDIsImV4cCI6MjA4NzY4MzYwMn0.6pJlPR9hYOh82ntZnXbPvUGw27yvAvvRHgvk4rkALeE';
+export const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJkbHVxa21zbGZxYWJyZ3lrbXdsIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MjEwNzYwMiwiZXhwIjoyMDg3NjgzNjAyfQ.UFsurQUNXiGQEjaBO7UEneNCEyD78Wn8mGCQIdzDzuU';
 
-export const SERVICES_LIST = [
-  "Классика",
-  "Минет",
-  "Анал",
-  "Минет в машине",
-  "Минет без резинки",
-  "Окончание в рот",
-  "Окончание на грудь",
-  "Окончание на лицо",
-  "Массаж",
-  "Массаж эротический",
-  "Массаж расслабляющий",
-  "Куннилингус",
-  "Римминг",
-  "Золотой дождь",
-  "Страпон",
-  "БДСМ лайт",
-  "БДСМ",
-  "Доминация",
-  "Фетиш",
-  "Ролевые игры",
-  "Стриптиз",
-  "Лесби-шоу",
-  "Групповой секс",
-  "Эскорт на мероприятие",
-  "Путешествия",
-  "GFE (Girlfriend Experience)",
-  "Апартаменты",
-  "Выезд"
-];
+export const COLORS = {
+  black: '#000000',
+  darkGray: '#1a1a1a',
+  violet: '#8b5cf6',
+  violetLight: '#a78bfa',
+};
 
-export const POPULAR_SERVICES = [
-  "Классика",
-  "Минет",
-  "Массаж",
-  "GFE (Girlfriend Experience)"
-];
-
-export const PREMIUM_SERVICES = [
-  "Анал",
-  "Минет без резинки",
-  "БДСМ",
-  "Эскорт на мероприятие"
-];
-
-export const PAYMENT_METHODS = [
-  { id: 'card', name: 'Банковская карта', details: '4400 0000 0000 1234' },
-  { id: 'crypto', name: 'USDT (TRC20)', details: 'TExxxxxxxxxxxxxxxxxxxxxxxxxx' },
-];
+export const PRICE_MULTIPLIERS = {
+  '1h': 1,
+  '2h': 1.8,
+  'night': 4,
+};
